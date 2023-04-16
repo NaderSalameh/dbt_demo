@@ -7,7 +7,7 @@ includes:
   - Sourcing
   - Tests (native and custom)
   - Snapshots
-  - Macros
+  - Macros using JINJA
   - Types of Materializations: 
   
       - TABLE: Model that is rebuilt as a table on each dbt run 
