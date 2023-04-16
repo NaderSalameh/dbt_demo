@@ -1,5 +1,5 @@
 # dbt_demo
-## dbt is an open-source command line tool that helps data engineers, data scientists, and data analyists transform data in their warehouse more effectively.
+## dbt is an open-source command line tool that helps data engineers, data scientists, and data analysts transform data in their warehouse more effectively.
 
 the repository demonstrates the usage of DBT using snowflake on GCP
 
