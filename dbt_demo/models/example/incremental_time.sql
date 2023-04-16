@@ -1,6 +1,9 @@
 
--- this is for testing purposed only. after 11:59 pm, this table will no longer long data. 
-
+/**********************************************************************************************************************************************************************
+demonstrates an incremental load. after 11:59 pm, this table will no longer load data. 
+alos demonstrates the "unique key" tests within the dataset configuration. however, as best practice, the same contraint is being applied during source initialization 
+see dbt_demo/schema.yml @line 87 
+***********************************************************************************************************************************************************************/
 {{ config(materialized='incremental', unique_key = 't_time') }}
 
 

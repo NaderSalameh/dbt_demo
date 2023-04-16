@@ -31,6 +31,11 @@ cumulative as (
 
 select *
 from cumulative 
+
+--. using this method to run the filter locally instead of warehouse 
+{% if target.name == 'dev'  %}
+where year(o_orderdate) = 1996
+{% endif %}
  
 
 

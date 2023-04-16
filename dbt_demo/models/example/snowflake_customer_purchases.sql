@@ -28,6 +28,7 @@ from src_customers as cust
         scr_orders as ord 
         on cust.c_custkey = ord.o_custkey
 
+--. see dbt_demo/macros/group_by.sql
 {{group_by(3)}}
 
 

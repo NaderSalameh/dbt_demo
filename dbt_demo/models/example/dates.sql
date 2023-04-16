@@ -1,4 +1,5 @@
 
+-- demonstrates an incremental load
 {{ config(materialized='incremental') }}
 
 
@@ -14,7 +15,7 @@ from src_dates
 where d_date <= current_date
 
 
---. macro to apply an incremental load
+--. used to apply the incremental load
 {% if is_incremental() %}
     and d_date > (select max(d_date) from {{ this }})
 {% endif %}
