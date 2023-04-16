@@ -2,13 +2,15 @@
 {{ config(materialized='table') }}
 
 
-with customers as (
+with src_customer as (
 
     select * 
-    from snowflake_sample_data.tpch_sf100.customer
+    from {{ source('sample', 'customer')  }}
 
 )
 
-select * 
-from customers
+select c_custkey
+    ,  c_mktsegment
+    ,  {{rename_segments('c_mktsegment')}} as c_mktsegment_adjusted
+from src_customer
 

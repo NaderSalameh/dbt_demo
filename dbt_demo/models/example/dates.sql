@@ -1,12 +1,20 @@
 
-{{ config(materialized='incremental', unique_key = 'd_date') }}
+{{ config(materialized='incremental') }}
 
+
+with src_dates as (
+
+    select * 
+    from {{ source('sf10', 'date_dim') }}
+
+)
 
 select *
-from snowflake_sample_data.tpcds_sf10tcl.date_dim
+from src_dates
 where d_date <= current_date
 
 
+--. macro to apply an incremental load
 {% if is_incremental() %}
     and d_date > (select max(d_date) from {{ this }})
 {% endif %}

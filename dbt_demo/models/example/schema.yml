@@ -54,12 +54,52 @@ models:
               values: ['BUILDING', 'AUTOMOBILE', 'MACHINERY', 'HOUSEHOLD', 'FURNITURE']
               quote: True
 
-
- 
-
-
-
-    
   - name: dates  
   - name: incremental_time
+
+sources: 
+  - name: sample 
+    database: snowflake_sample_data
+    schema: tpch_sf1
+    tables:
+      - name: customer
+        columns:
+          - name: c_custkey
+            tests:
+              - unique
+              - not_null
+      - name: orders 
+
+  - name: sf
+    database: snowflake_sample_data
+    schema: tpch_sf100 
+    tables: 
+      - name: customer 
+
+  - name: sf10
+    database: snowflake_sample_data
+    schema: tpcds_sf10tcl
+    tables: 
+      - name: time_dim
+        columns:
+          - name: t_time
+            tests:
+              - unique
+              - not_null 
+      - name: date_dim
+        columns: 
+          - name: d_date 
+            tests: 
+              - unique
+              - not_null
+
+
+
+
+
+
+      
+
+
+
 

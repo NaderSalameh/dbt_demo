@@ -1,23 +1,33 @@
 
 {{ config(materialized='view') }}
 
-with total_order_price as (
+with src_customers as (
+
+    select * 
+    from {{ source('sample', 'customer') }}
+
+), 
+
+scr_orders as (
+
+    select * 
+    from {{ source('sample', 'orders') }} 
+
+)
+
 
 select 
       cust.c_custkey
     , cust.c_name
     , cust.c_nationkey
     , sum(ord.o_totalprice) as total_order_price
-from snowflake_sample_data.tpch_sf1.customer as cust 
+
+from src_customers as cust 
+
     left outer join 
-        snowflake_sample_data.tpch_sf1.orders as ord 
+        scr_orders as ord 
         on cust.c_custkey = ord.o_custkey
-group by 
-       cust.c_custkey
-    ,  cust.c_name
-    ,  cust.c_nationkey 
 
-) 
+{{group_by(3)}}
 
-select * 
-from total_order_price
+
